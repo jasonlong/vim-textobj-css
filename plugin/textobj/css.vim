@@ -17,11 +17,17 @@ function! s:select_a()
   let s:flags = 'Wb' " Search backward to previous {
 
   call searchpair(s:start_pattern,'',s:end_pattern, s:flags)
-  let start_pos = getpos('.')
 
   " Jump to match
   normal %
   let end_pos = getpos('.')
+
+  " Jump back to top and look for multiple lines of selectors
+  normal %0
+  if line('.') > 1 " Only look further up if we're not on the first line
+    normal {j
+  endif
+  let start_pos = getpos('.')
 
   return ['V', start_pos, end_pos]
 endfunction
