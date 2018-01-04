@@ -15,6 +15,17 @@
 
 It's often handy to visually select a nested CSS block with `vac` and then type `ac` again to expand the selection to the parent block. This is shown in the above GIF.
 
+#### :warning: Warning if you use vim-gitgutter :warning:
+
+vim-gitgutter supplies some text objects for dealing with hunks and these conflict with vim-textobj-css. As the [vim-gitgutter README describes](https://github.com/airblade/vim-gitgutter#hunks), you can override those settings with something like:
+
+```
+omap ih <Plug>GitGutterTextObjectInnerPending
+omap ah <Plug>GitGutterTextObjectOuterPending
+xmap ih <Plug>GitGutterTextObjectInnerVisual
+xmap ah <Plug>GitGutterTextObjectOuterVisual
+```
+
 ## Installation
 
 This plugin requires [vim-textobj-user](https://github.com/kana/vim-textobj-user). Use your favorite plugin manager to add these lines.
